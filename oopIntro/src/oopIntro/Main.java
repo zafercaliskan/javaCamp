@@ -3,27 +3,30 @@ package oopIntro;
 public class Main {
 
 	public static void main(String[] args) {
-		Product product1=new Product(); //Örnek Oluþturma, referans oluþturma***, instance oluþturma		
-		product1.id=1;
-		product1.name="lenevo V14";
-		product1.unitPrice=15000;
-		product1.detail="16 gb ram";
+		Product product1=new Product(1,"Lenevo",1600,"16 gb ram",10); //Örnek Oluþturma, referans oluþturma***, instance oluþturma		
 		
-		Product[] product= {
-				product1				
-		};
-		System.out.println(product.length);
+		Product product2 = new Product(); //Örnek Oluþturma, referans oluþturma***, instance oluþturma		
+
+		product2.setId(1);
+		product2.setName("Lenevo 15");
+		product2.setDetail("16 gb ram");
+		product2.setDiscount(10);
+		product2.setUnitPrice(16000);
+		System.out.println(product2.getUnitPricAfterDiscount());
+		
+		ProductManager productManager = new ProductManager();
+		productManager.addToCart(product1);
 		
 		Category category1=new Category();
-		category1.id=1;
-		category1.name="Bilgisayar";
+		category1.setId(1);
+		category1.setName("Bilgisayar");
 		
 		Category category2=new Category();
-		category2.id=2;
-		category2.name="Ev/Bahçe";
+		category2.setId(0);
+		category2.setName("Ev/Bahçe");
 		
-		ProductManager productManager=new ProductManager();
-		productManager.addToCart(product1);
+		System.out.println(category1.getName());
+		System.out.println(category2.getName());
 		
 	}
 }
