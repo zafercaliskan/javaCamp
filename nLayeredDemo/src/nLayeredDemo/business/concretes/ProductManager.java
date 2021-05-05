@@ -3,27 +3,32 @@ package nLayeredDemo.business.concretes;
 import java.util.List;
 
 import nLayeredDemo.business.abstracts.ProductService;
+import nLayeredDemo.core.LoggerService;
 import nLayeredDemo.dataAccess.abstracts.ProductDao;
 import nLayeredDemo.entities.concretes.Product;
 
 public class ProductManager implements ProductService {
 	private ProductDao productDao;
+	private LoggerService loggerService;
 
-	public ProductManager(ProductDao productDao) { //Depenties injections (Gevþek baðýmlýlýk loosely)
+	public ProductManager(ProductDao productDao, LoggerService loggerService) { //Depenties injections (GevÅŸek baÄŸÄ±mlÄ±lÄ±k loosely)
 		super();
 		this.productDao = productDao;
+		this.loggerService = loggerService;
+		
 	}
 
 	@Override
 	public void add(Product product) {
-		//Ýþ Kodlarý yazýlýr
+		//Ä°ÅŸ KodlarÄ± yazÄ±lÄ±r
 		
 		if(product.getCategoryId()==1) {
-			System.out.println("Bu kategoride ürün kabul edilmiyor.");
-			return; //Burasý aþaðýdaki kodlara bakmaz döner.
+			System.out.println("Bu kategoride Ã¼rÃ¼n kabul edilmiyor.");
+			return; //BurasÄ± aÅŸaÄŸÄ±daki kodlara bakmaz dÃ¶ner.
 		}
 
 		this.productDao.add(product);
+		this.loggerService.logToSystem("ÃœrÃ¼n eklendi. "+ product.getName());
 	}
 
 	@Override
