@@ -16,9 +16,10 @@ public class ProductManager implements ProductService {
 	private ProductDao productDao;	
 
 	//Bir instance oluşturuyor. Geçen hafta hibernate, inmemory gibi. 
-	//Bu instance buraya vereceğine dair bir bilgi yok. 
+	//Bu instance buraya vereceğine dair bir bilgi yok. (constructor içinde parametreler. 
+	// ep interface üzerinden gider.) 
 	//İşte bunu @Autowired anatsyonu ile yapıyoruz. Springden gelir. Beans görürsek
-	//java class'ı dependency injection arkapalnda fabrika deseni çalıştırır intance verir
+	//java class'ı dependency injection arkapalnda fabrika deseni çalıştırır instance verir
 	//Autowired dediğimizde spring gidip arkaplanda buna karşılık gelebilecek ProductDao'nun
 	//instance olabilecek bir sınıfı üretiyor ve onu veriyor. Spring tarfında tanımlı.
 	
@@ -32,5 +33,4 @@ public class ProductManager implements ProductService {
 	public List<Product> getAll() {
 		return productDao.findAll();
 	}
-
 }
