@@ -3,10 +3,13 @@ package kodlamaio.northwind.entities.concretes;
 import javax.persistence.Column; //Jpa alt yapısını kullanır.
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data //lombok: getter setter
 @Entity //Anatasyon: Anatasyon nedir? - Aslında bir class'ın çalışma anında veya derleme
@@ -15,11 +18,13 @@ import lombok.Data;
 
 
 @Table(name = "products") //Veri tabanında hangi tabloya karşılık geldiğini söylüyoruz.
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
 	@Id  //Tablodaki id alanın ne olduğunu söylemek gerekiyor. İşlemlerini idye göre yapacak.
 	//Veri tabanında id alanları: bazen manuel, bazen otomatik, bazen oracle tarafında...
-	@GeneratedValue //Bir bir artırılacağını söyledik.
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Bir bir artırılacağını söyledik.
 	@Column(name="product_id") //Veri tabanında hangi kolona karşılık geldiğini söylüyoruz.
 	private int id;
 	
@@ -37,19 +42,4 @@ public class Product {
 	
 	@Column(name="quantity_per_unit")
 	private String quantityPerUnit;
-	
-	public Product() {
-		
-	}
-
-	public Product(int id, int categoryId, String productName, double unitPrice, short unitsInStock,
-			String quantityPerUnit) {
-		super();
-		this.id = id;
-		this.categoryId = categoryId;
-		this.productName = productName;
-		this.unitPrice = unitPrice;
-		this.unitsInStock = unitsInStock;
-		this.quantityPerUnit = quantityPerUnit;
-	}
 }
