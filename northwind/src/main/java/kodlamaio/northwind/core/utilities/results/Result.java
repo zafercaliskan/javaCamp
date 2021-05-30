@@ -10,7 +10,8 @@ public class Result {
 	}
 
 	public Result(boolean success, String message) {
-		this(success);
+		this(success); //şuanki mevcut class demek. Kendimizi tekrar etmiyoruz.
+		//Yukarı satırda bu classın consructor'ı hangisi tek parametreli olanı çağırmış oluyoruz.
 		this.message = message;
 	}
 	

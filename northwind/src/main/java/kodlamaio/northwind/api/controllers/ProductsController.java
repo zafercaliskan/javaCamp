@@ -15,8 +15,8 @@ import kodlamaio.northwind.core.utilities.results.Result;
 import kodlamaio.northwind.entities.concretes.Product;
 
 //Bunların hepsi springden geliyor.
-@RestController //Sen bir controllersın demek. Her iş yapan sınıflara anatayon ekledik. Entity, Service etc.
-@RequestMapping("/api/products") //Farklı controllerlar olabilir. /api/products böyle bir istek gelirse onu 
+@RestController //Sen bir controllersın demek. Her iş yapan sınıflara anatayon ekledik. Entity, Service etc. Java olmayanlarda tanısın diye RestController tanımlarız.
+@RequestMapping("/api/products") //Farklı controllerlar olabilir.   domain'imizin sonuna /api/products'a bir istek gelirse bu controller'a erişir.
 //karşılayacak budur demiş oluyoruz.
 public class ProductsController {
 	
@@ -26,7 +26,9 @@ public class ProductsController {
 	//productService'i productmanager implement ettiğini buluyor. Arka planda ProductManager'ı newliyor.
 	//Onu newlerken productDao'ya ihtiyacaç duyuyor onuda newliyor. Newlenmiş productmanager'i alt satırdaki
 	//ProductService productService'e yerleştiriyor. Bizim newlememize gerek kalmıyor.
-	public ProductsController(ProductService productService) {
+	public ProductsController(ProductService productService) { //productService bir interface. Tek başına bir anlamı yok. Fakat referans tutucu olması itibariyle bu adam 
+		//manager'ı tutabilir. Çünkü kendisinden implemente edilen classları tutabilir.  @Autowired da tüm projeyi gezer o interface'i implementye eden classı managerı bulur 
+		// onu newler o referansı productService' arkadaşına atar.
 		super();
 		this.productService = productService;
 	}

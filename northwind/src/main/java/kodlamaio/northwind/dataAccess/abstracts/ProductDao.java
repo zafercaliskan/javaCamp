@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.northwind.entities.concretes.Product;
 
 //Interface interface'i extend eder.
-public interface ProductDao extends JpaRepository<Product, Integer>{
+public interface ProductDao extends JpaRepository<Product, Integer>{ //JpaRepository her nesneyle çalışabilecek bir yapıda. Yapılandırmaya göre çalışır.
 	// JpaRepository ne yapıyor? 
 	// Verdiğin veri tipi için entity anatasyonu ile süslenmiş nesne için yani Product için 
 	// Primary key alanınıda verki sorguları ve intelisence'i ona göre ayarlar.

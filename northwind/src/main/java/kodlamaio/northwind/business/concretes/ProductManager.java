@@ -14,7 +14,7 @@ import kodlamaio.northwind.dataAccess.abstracts.ProductDao;
 import kodlamaio.northwind.entities.concretes.Product;
 
 @Service // Bu class projede servis görevi görecek diye spring'e bilgi veriyoruz.
-public class ProductManager implements ProductService {
+public class ProductManager implements ProductService { //Asıl işi yaptığımız yer.
 
 	private ProductDao productDao;
 
@@ -30,15 +30,17 @@ public class ProductManager implements ProductService {
 	// instance olabilecek bir sınıfı üretiyor ve onu veriyor. Spring tarfında
 	// tanımlı.
 
-	@Autowired // Java dünyasında çok popüler.
-	public ProductManager(ProductDao productDao) {
+	@Autowired // Java dünyasında çok popüler. productDao'u implemente eden somut sınıfı bulur onu newleyip atamasını yapar.
+	public ProductManager(ProductDao productDao) { //constructor injection: bir baımlılığı constructor üzerinden injekte etmek. 
 		super();
 		this.productDao = productDao;
 	}
 
 	@Override
 	public DataResult<List<Product>> getAll() {
-		return new SuccessDataResult<List<Product>>(this.productDao.findAll(), "Data listelendi");
+		return new SuccessDataResult<List<Product>>(this.productDao.findAll(), "Data listelendi"); //Burada newlemenin bir sakıncası yoktur.
+		//Çünkü burası bir bağımlılık oluşturmaz. Burada SuccessDataResult bize bir entity'nin dönüşünü anlatır.
+		//Entity'e özeldir. Entity'in newlenmesinin bir sakıncası yoktur. Newlenebilir.
 	}
 
 	@Override

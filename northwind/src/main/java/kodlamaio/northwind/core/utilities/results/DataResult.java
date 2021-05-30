@@ -1,10 +1,10 @@
 package kodlamaio.northwind.core.utilities.results;
 
-public class DataResult<T> extends Result {
+public class DataResult<T> extends Result { //T Döndüreceği data tipini olur. 
 
 	private T data;
 	public DataResult(T data, boolean success, String message) {
-		super(success, message);
+		super(success, message); //Bu super ile base'in consructorlarını çalıştırmaya yarıyor.
 		this.data=data;
 	}
 	

@@ -1,7 +1,6 @@
 package kodlamaio.northwind.core.utilities.results;
 
-public class SuccessResult extends Result {
-
+public class SuccessResult extends Result {  //SuccessResult başarılı demektir.
 	public SuccessResult() {
 		super(true);
 	}
