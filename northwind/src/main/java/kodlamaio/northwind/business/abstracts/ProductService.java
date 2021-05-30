@@ -5,6 +5,7 @@ import java.util.List;
 import kodlamaio.northwind.core.utilities.results.DataResult;
 import kodlamaio.northwind.core.utilities.results.Result;
 import kodlamaio.northwind.entities.concretes.Product;
+import kodlamaio.northwind.entities.dtos.ProductWithCategoryDto;
 
 public interface ProductService { //controllerların kullanacağı operasyonları yazarız. 
 	//İş katmanında sadece ve sadece iş kodları yazılır. 
@@ -26,4 +27,6 @@ public interface ProductService { //controllerların kullanacağı operasyonlar�
 	DataResult<List<Product>> getByProductNameStartsWith(String productName);
       
 	DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId);
+	
+	DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails();
 }

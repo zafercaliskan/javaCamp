@@ -12,6 +12,7 @@ import kodlamaio.northwind.core.utilities.results.SuccessDataResult;
 import kodlamaio.northwind.core.utilities.results.SuccessResult;
 import kodlamaio.northwind.dataAccess.abstracts.ProductDao;
 import kodlamaio.northwind.entities.concretes.Product;
+import kodlamaio.northwind.entities.dtos.ProductWithCategoryDto;
 
 @Service // Bu class projede servis görevi görecek diye spring'e bilgi veriyoruz.
 public class ProductManager implements ProductService { //Asıl işi yaptığımız yer.
@@ -84,5 +85,10 @@ public class ProductManager implements ProductService { //Asıl işi yaptığım
 	@Override
 	public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
 		return new SuccessDataResult<List<Product>>(this.productDao.getByNameAndCategory(productName,categoryId),"Data listelendi");
+	}
+
+	@Override
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+		return new SuccessDataResult<List<ProductWithCategoryDto>>(this.productDao.getProductWithCategoryDetails(), "Data listelendi");
 	}
 }
