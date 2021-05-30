@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 //Burada product bir entitydir bir veri tabanı nesnesidir diyoruz.
 
 
-@Table(name = "products") //Veri tabanında hangi tabloya karşılık geldiğini söylüyoruz.
+@Table(name = "products") //Veri tabanında hangi tabloya karşılık geldiğini ve hangi tablo olduğunu söylüyoruz. //C#da attribüte
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
@@ -28,8 +30,8 @@ public class Product {
 	@Column(name="product_id") //Veri tabanında hangi kolona karşılık geldiğini söylüyoruz.
 	private int id;
 	
-	@Column(name="category_id")
-	private int categoryId;
+	//@Column(name="category_id") //Aşağıda belirttiğiiz için burada gerek yok.
+	//private int categoryId;
 	
 	@Column(name="product_name")
 	private String productName;
@@ -42,4 +44,12 @@ public class Product {
 	
 	@Column(name="quantity_per_unit")
 	private String quantityPerUnit;
+	
+	@ManyToOne()
+	@JoinColumn(name="category_id") //Hangi kolon ile ilişkilendirileceğini söyledik. 
+	//Bu hareketi yapınca aslında biz bu product'ın  category'si nedir yapmış oluyoruz. Yani en yukarıdaki category_id alanını tutmaya gerek yok.
+	private Category category; 
+	//Category'nin yani ana tablonun products ile ilgili hiçbir bilgisi yok. Biz join'i category_id ile yapıyoruz. 
+	// İlişkilendirildiği anda maplemiş olacağız. 
+	
 }
