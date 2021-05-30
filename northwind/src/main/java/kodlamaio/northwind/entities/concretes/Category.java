@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,19 +19,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Parametresiz consructor oluşturur.
 @Table(name = "categories") // Veri tabanıyla ilişkilendiriyoruz.
 @Entity // Veri tabanı tablosunu olduğunu anlatmak için kullandığımız anatasyon.
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","products"})
 public class Category {
 	@Id //veri tabanında kategoriler otomatik artmıyor. Ama idyi vermek gerekiyor. İlişkilendirme yaptık...
 	@Column(name = "category_id")
-	private int catergoryId;
+	private int categoryId;
 
 	@Column(name = "category_name")
 	private String categoryName;
-
-	@OneToMany(mappedBy = "categories") //products'ı categories ile ilişkilendiriyor.
+	
+	@OneToMany(mappedBy = "category") //products'ı categories ile ilişkilendiriyor.
 	// Burası ana tablo. Birden çoka bir ilişki var.
 	// Product tablosunda aynı categor_id'den birden fazla kez olabilir.
 	private List<Product> products; //product tablosundan buraya ilişki atarken many to one yapacağız.
-	
 	//Yukarıdaki olay kategorinin ürünleri. Yani 1den çoka.
 }
 
