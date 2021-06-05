@@ -3,6 +3,7 @@ package kodlamaio.northwind.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import kodlamaio.northwind.entities.dtos.ProductWithCategoryDto;
 @RestController //Sen bir controllersın demek. Her iş yapan sınıflara anatayon ekledik. Entity, Service etc. Java olmayanlarda tanısın diye RestController tanımlarız.
 @RequestMapping("/api/products") //Farklı controllerlar olabilir.   domain'imizin sonuna /api/products'a bir istek gelirse bu controller'a erişir.
 //karşılayacak budur demiş oluyoruz.
+@CrossOrigin
 public class ProductsController {
 	
 	private ProductService productService;
